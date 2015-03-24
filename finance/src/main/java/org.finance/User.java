@@ -5,7 +5,7 @@ public class User {
     private String email;
     private String password;
     private String name;
-    static UserStore repository = new UserStoreMemory();
+    static private UserStore repository = new UserStoreMemory();
 
     public User(String email, String password, String name) {
         this.email = email;
