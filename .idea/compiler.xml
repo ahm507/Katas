@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="finance" />
+        <module name="money" />
       </profile>
     </annotationProcessing>
   </component>
