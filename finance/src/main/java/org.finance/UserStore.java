@@ -6,3 +6,4 @@ public interface UserStore {
     boolean select(String email);
     void deleteAll();
 }
+
