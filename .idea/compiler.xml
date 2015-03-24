@@ -24,6 +24,7 @@
         <processorPath useClasspath="true" />
         <module name="finance" />
         <module name="money" />
+        <module name="MovieRental-2.0" />
       </profile>
     </annotationProcessing>
   </component>
