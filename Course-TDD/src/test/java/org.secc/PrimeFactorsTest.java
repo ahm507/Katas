@@ -22,15 +22,6 @@ public class PrimeFactorsTest {
         prime = new PrimeFactors();
     }
 
-    @Parameterized.Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][]{
-                {1, ""}, {2, "2"}, {3, "3"}, {4, "2, 2"},
-                {6, "2, 3"}, {8, "2, 2, 2"}, {9, "3, 3"},
-                {12, "2, 2, 3"}, {14, "2, 7"}, {286, "2, 11, 13"}
-        });
-    }
-
     private int input;
     private String expected;
 
@@ -62,7 +53,6 @@ public class PrimeFactorsTest {
     }
 
     public static String stringfy(ArrayList<Integer> arr) {
-
         StringBuffer out = new StringBuffer();
         for(int i = 0 ; i < arr.size(); i++) {
             out.append(arr.get(i));
@@ -73,6 +63,24 @@ public class PrimeFactorsTest {
         }
         return out.toString();
     }
+
+
+    @Parameterized.Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][]{
+                {1, ""},
+                {2, "2"},
+                {3, "3"},
+                {4, "2, 2"},
+                {6, "2, 3"},
+                {8, "2, 2, 2"},
+                {9, "3, 3"},
+                {12, "2, 2, 3"},
+                {14, "2, 7"},
+                {286, "2, 11, 13"}
+        });
+    }
+
 
 }
 
