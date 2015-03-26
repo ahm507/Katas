@@ -16,7 +16,7 @@ A TDD kata.
 
 MovieRental-1.0:
 ----------------
-This is a kata by Martin Fowler.
+This is code us by Martin Fowler in his Refactoring book.
 Source code that is not properly written and needs automated tests to be easily changed.
 
 
@@ -33,4 +33,4 @@ TDD Course Katas:
 * Standard Deviation - StdDev
 * Tennis
 
- 
+

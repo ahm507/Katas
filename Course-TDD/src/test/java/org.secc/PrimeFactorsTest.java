@@ -2,10 +2,16 @@ package org.secc;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 import static junit.framework.TestCase.assertEquals;
+
+@RunWith(Parameterized.class)
 
 public class PrimeFactorsTest {
 
@@ -16,67 +22,57 @@ public class PrimeFactorsTest {
         prime = new PrimeFactors();
     }
 
-    ArrayList<Integer> getArray(int[] ints) {
-        ArrayList<Integer> array = new ArrayList<Integer>();
-        for(int num : ints) {
-            array.add(num);
+    @Parameterized.Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][]{
+                {1, ""}, {2, "2"}, {3, "3"}, {4, "2, 2"},
+                {6, "2, 3"}, {8, "2, 2, 2"}, {9, "3, 3"},
+                {12, "2, 2, 3"}, {14, "2, 7"}, {286, "2, 11, 13"}
+        });
+    }
+
+    private int input;
+    private String expected;
+
+    public PrimeFactorsTest(int input, String expected) {
+        this.input= input;
+        this.expected= expected;
+    }
+
+    @Test
+    public void test_prime() throws Exception {
+        assertEquals(expected, stringfy(prime.get(input)));
+    }
+
+    @Test
+    public void testStringfy() throws Exception {
+        ArrayList<Integer> primes = new ArrayList<Integer>();
+        primes.add(2);
+        primes.add(3);
+        primes.add(4);
+        assertEquals("2, 3, 4", stringfy(primes));
+    }
+
+    @Test
+    public void testStringfy2() throws Exception {
+        ArrayList<Integer> primes = new ArrayList<Integer>();
+        primes.add(2);
+        assertEquals("2", stringfy(primes));
+
+    }
+
+    public static String stringfy(ArrayList<Integer> arr) {
+
+        StringBuffer out = new StringBuffer();
+        for(int i = 0 ; i < arr.size(); i++) {
+            out.append(arr.get(i));
+            if(i != arr.size()-1) {
+                out.append(", ");
+            }
+
         }
-        return array;
+        return out.toString();
     }
-
-    @Test
-    public void testPrimeFactors_1() throws Exception {
-        assertEquals(getArray(new int[]{}), prime.get(1));
-    }
-
-    @Test
-    public void testPrimeFactors_2() throws Exception {
-        assertEquals(getArray(new int[]{2}), prime.get(2));
-    }
-
-    @Test
-    public void testPrimeFactors_3() throws Exception {
-        assertEquals(getArray(new int[]{3}), prime.get(3));
-    }
-
-    @Test
-    public void testPrimeFactors_4() throws Exception {
-        assertEquals(getArray(new int[]{2, 2}), prime.get(4));
-    }
-
-    @Test
-    public void test_5() throws Exception {
-        assertEquals(getArray(new int[]{5}), prime.get(5));
-        assertEquals(getArray(new int[]{2, 3}), prime.get(6));
-    }
-
-    @Test
-    public void test_8() throws Exception {
-        assertEquals(getArray(new int[]{2, 2, 2}), prime.get(8));
-
-    }
-
-    @Test
-    public void test_9() throws Exception {
-        assertEquals(getArray(new int[]{3, 3}), prime.get(9));
-
-    }
-
-    @Test
-    public void test_10() throws Exception {
-        assertEquals(getArray(new int[]{2, 5}), prime.get(10));
-        assertEquals(getArray(new int[]{2, 2, 3}), prime.get(12));
-    }
-
-    @Test
-    public void test_14() throws Exception {
-        assertEquals(getArray(new int[]{2, 7}), prime.get(14));
-    }
-
-    @Test
-    public void test_286() throws Exception {
-        assertEquals(getArray(new int[]{2, 11, 13}), prime.get(286));
-    }
-
 
 }
+
